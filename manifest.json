@@ -1,0 +1,18 @@
+{
+    "name": "R&M Massas",
+    "short_name": "R&M Massas",
+    "icons": [{
+      "src": "./images/Icone64px.png",
+        "sizes": "64x64",
+        "type": "image/png"
+      },{
+        "src": "./images/Icone512px.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }],
+    "start_url": "./login.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000"
+  }
+  

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <link rel="manifest" href="manifest.json">
+    <title>R&M Massas Frescas</title>
+    <meta name="theme-color" content="#000000"/>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="/registra.js"></script>
+<style>
+
+.indicator{
+    background-color: #c4a066 !important
+}
+
+.tab a {
+    color: #c4a066 !important
+}
+
+#tabsPrincipal{
+    background-color: #212121
+}
+
+.brand-logo{
+    left: 46.9%;
+}
+
+@media only screen and (max-width: 1920px) {
+  table.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+    /* sort out borders */
+  }
+  table.responsive-table td:empty:before {
+    content: '\00a0';
+  }
+  table.responsive-table th,
+  table.responsive-table td {
+    margin: 0;
+    vertical-align: top;
+  }
+  table.responsive-table th {
+    text-align: left;
+  }
+  table.responsive-table thead {
+    display: block;
+    float: left;
+  }
+  table.responsive-table thead tr {
+    display: block;
+    padding: 0 10px 0 0;
+  }
+  table.responsive-table thead tr th::before {
+    content: "\00a0";
+  }
+  table.responsive-table tbody {
+    display: block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  table.responsive-table tbody tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  table.responsive-table th {
+    display: block;
+    text-align: right;
+  }
+  table.responsive-table td {
+    display: block;
+    min-height: 1.25em;
+    text-align: center;
+  }
+  table.responsive-table tr {
+    padding: 0 10px;
+  }
+  table.responsive-table thead {
+    border: 0;
+    border-right: 1px solid #d0d0d0;
+  }
+  table.responsive-table.bordered th {
+    border-bottom: 0;
+    border-left: 0;
+  }
+  table.responsive-table.bordered td {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  table.responsive-table.bordered tr {
+    border: 0;
+  }
+  table.responsive-table.bordered tbody tr {
+    border-right: 1px solid #d0d0d0;
+  }
+
+  @media print {
+   div {
+       display: none !important;
+    }
+    div.example-print {
+       display: block!important;
+    }
+}
+
+}
+
+</style>
+
+</head>
+
+  <body class="" style="background-color: #c4a066 !important;">
+        <!--
+            <input type="file" id="fileInput">
+            <a class="btn" id='btnfileInput'>aaaaa</a>
+        -->
+    <!-- Modal Structure -->
+    <div id="adicionarProdutos" class="modal">
+        <div class="modal-header right-align">
+            <span class="modal-close waves-effect waves-green material-icons">close</span>
+        </div>
+
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="nomeProdutoNovo" type="text" class="validate">
+                            <label for="nomeProdutoNovo">Nome do Produto</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="PesoProdutoNovo" type="text" class="validate">
+                            <label for="PesoProdutoNovo">Peso Total da Embalagem</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="PrecoProdutoNovo" type="text" class="validate">
+                            <label for="PrecoProdutoNovo">Preço</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="QuantidadeProdutoNovo" type="text" class="validate">
+                            <label for="QuantidadeProdutoNovo">Quantidade</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="TipoProdutoNovo">
+                                
+                            </select>
+                            <label>Tipo de Produto</label>
+                        </div>
+                        <div class=" col s6 center-align">
+                                <a class="orange waves-effect waves-light btn" onclick="adicionarProdutoAoEstoque()">Adicionar Produto</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field col s12">
+                            <textarea id="DescricaoProdutoNovo" class="materialize-textarea"></textarea>
+                            <label for="DescricaoProdutoNovo">Descrição do Produto</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="ModalDetalhesVendas" class="modal">
+        <div class="modal-header right-align">
+            <span class="modal-close waves-effect waves-green material-icons">close</span>
+        </div>
+
+        <div class="modal-content" id="ContentModalDetalhesVendas" style="padding-top: 0px;padding-bottom: 0px;">
+
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="ModalDetalhesEntregas" class="modal">
+        <div class="modal-header right-align">
+            <span class="modal-close waves-effect waves-green material-icons">close</span>
+        </div>
+
+        <div class="modal-content" id="ContentModalDetalhesEntregas" style="padding-top: 0px;padding-bottom: 0px;">
+
+        </div>
+    </div>
+
+
+        <!-- Modal Structure -->
+    <div id="ModalEditaCliente" class="modal">
+        <div class="modal-header right-align">
+            <span class="modal-close waves-effect waves-green material-icons">close</span>
+        </div>
+
+        <div class="modal-content" id="ContentModalEditaCliente" style="padding-top: 0px;padding-bottom: 0px;">
+            <input class="hide" id="idClienteSendoEditado"></input>
+            <div class="row" >
+                <div class="input-field col l8 s6">
+                    <input id="NomeEditaCliente" disabled type="text" class="validate">
+                    <label for="NomeEditaCliente">Nome Cliente</label>
+                </div>
+                <div class="input-field col l3 s6">
+                    <input id="TelefoneEditaCliente" type="number" class="validate">
+                    <label for="TelefoneEditaCliente">Telefone</label>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="input-field col l10 s6 ">
+                    <input id="EnderecoEditaCliente" type="text" class="validate">
+                    <label for="EnderecoEditaCliente">Endereço</label>
+                </div>
+                <div class="input-field col l2 s6">
+                    <input id="NumeroEnderecoEditaCliente" type="number" class="validate">
+                    <label for="NumeroEnderecoEditaCliente">Numero</label>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="input-field col l7 s6 ">
+                    <input id="ComplementoEnderecoEditaCliente" type="text" class="validate">
+                    <label for="ComplementoEnderecoEditaCliente">Complemento</label>
+                </div>
+                <div class="input-field col l5 s6">
+                    <input id="CidadeEditaCliente" value="Guarulhos" type="text" class="validate">
+                    <label for="CidadeEditaCliente">Cidade</label>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="input-field col s12 center-align">
+                    <a class="btn orange" onclick='salvarEditaCliente()'>Salvar Cliente</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <!-- Modal Structure -->
+    <div id="editaProdutos" class="modal">
+        <div class="modal-header right-align">
+            <span class="modal-close waves-effect waves-green material-icons">close</span>
+        </div>
+
+        <div class="modal-content" style="padding-top: 0px;padding-bottom: 0px;">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="editnomeProdutoNovo" type="text" class="validate">
+                            <label for="editnomeProdutoNovo">Nome do Produto</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="editPesoProdutoNovo" type="text" class="validate">
+                            <label for="editPesoProdutoNovo">Peso Total da Embalagem</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="editPrecoProdutoNovo" type="text" class="validate">
+                            <label for="editPrecoProdutoNovo">Preço</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="editQuantidadeProdutoNovo" type="text" class="validate">
+                            <label for="editQuantidadeProdutoNovo">Quantidade</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="editDescricaoProdutoNovo" class="materialize-textarea"></textarea>
+                            <label for="editDescricaoProdutoNovo">Descrição do Produto</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col s6 center-align">
+                            <a class="red waves-effect waves-light btn" id="excluirProdutoEditBtn">Excluir</a>
+                        </div>
+                        <div class=" col s6 center-align">
+                            <a class="orange waves-effect waves-light btn" id="salvarProdutoEditBtn">Salvar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <nav class="nav-extended grey darken-4">
+        <div class="nav-wrapper">
+        <a href="#" class="brand-logo">R&M</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a onclick="sairSistema()">Sair</a></li>
+        </ul>
+        </div>
+        <div class="nav-content">
+        <ul id="tabsPrincipal" class="tabs ">
+            <li class="tab"><a class="active" href="#EstoqueTab" onclick="iniciaEstoque()">Estoque</a></li>
+            <li class="tab"><a href="#VendasTab" onclick="iniciaVendas()">Vendas</a></li>
+            <li class="tab"><a href="#ClientesTab" onclick="iniciaClientes()">Clientes</a></li>
+            <li class="tab"><a href="#EntregasTab" onclick="iniciaEntregas()">Entregas</a></li>
+            <li class="tab"><a href="#ComprasTab" onclick="iniciaCompras()">Compras</a></li>
+            <li class="tab"><a href="#FinanceiroTab">Financeiro</a></li>
+            <li class="tab"><a href="#AdministracaoTab" onclick="iniciaAdministracao()">Administração</a></li>
+        </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+    </ul>
+
+    <div id="EstoqueTab" class="col s12">   
+        <div class="" id="DivProdutos" style="background-color: #c4a066 !important;margin-top: 30px;"></div>
+    </div>
+    <div id="VendasTab" class="col s12">
+        <div class="row">
+            <div class="col s10 offset-s1">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 15px;padding-bottom: 0px;">
+                            <!--<h5>Nova Venda</h5>
+                            <div class="divider" style="margin-bottom:0px"></div>-->
+                            <div class="row" id="divNovaVendaTipoCliente" style="padding-bottom: 15px">
+                                <div class="col m4 s12 center-align" style="margin-top: 0px">
+                                    <a class="btn orange" onclick="novoPedidoCadCliente()">Novo Cliente</a>
+                                </div>
+                                <div class="col m4 s12 center-align" style="margin-top: 0px">
+                                    <a class="btn orange" onclick="novoPedidoClienteOk()">Nova Venda (Pronta Entrega)</a>
+                                </div>
+                                <div class="col m4 s12 center-align" style="margin-top: 0px">
+                                    <a class="btn orange" onclick="novoPedidoClienteEncomenda()">Nova Venda (Encomenda)</a>
+                                </div>
+                            </div>
+
+                            <div class="row hide" id="divNovaVendaCadastrarCliente" style="padding-bottom: 15px">
+                                <div class="row" >
+                                    <div class="input-field col l7 s6 offset-l1">
+                                        <input id="NomeClienteNovo" type="text" class="validate">
+                                        <label for="NomeClienteNovo">Nome Cliente</label>
+                                    </div>
+                                    <div class="input-field col l3 s6">
+                                        <input id="TelefoneClienteNovo" type="number" class="validate">
+                                        <label for="TelefoneClienteNovo">Telefone</label>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                    <div class="input-field col l9 s6 offset-l1">
+                                        <input id="EnderecoClienteNovo" type="text" class="validate">
+                                        <label for="EnderecoClienteNovo">Endereço</label>
+                                    </div>
+                                    <div class="input-field col l1 s6">
+                                        <input id="NumeroEnderecoClienteNovo" type="number" class="validate">
+                                        <label for="NumeroEnderecoClienteNovo">Numero</label>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                    <div class="input-field col l5 s6 offset-l1">
+                                        <input id="ComplementoEnderecoClienteNovo" type="text" class="validate">
+                                        <label for="ComplementoEnderecoClienteNovo">Complemento</label>
+                                    </div>
+                                    <div class="input-field col l5 s6">
+                                        <input id="CidadeClienteNovo" value="Guarulhos" type="text" class="validate">
+                                        <label for="CidadeClienteNovo">Cidade</label>
+                                    </div>
+                                </div>
+                                <div class="row" >
+                                    <div class="input-field col s2 center-align">
+                                        <a class="btn orange" onclick='voltarTipoPedidoNovo()'>Voltar</a>
+                                    </div>
+                                    <div class="input-field col s4 right-align">
+                                        <a class="btn orange" id="BtnSalvarClienteProntaEntrega" onclick='cadastrarClienteNovo("1")'>Continuar (Pronta Entrega)</a>
+                                    </div>
+                                    <div class="input-field col s4 left-align">
+                                        <a class="btn orange" id="BtnSalvarClienteEncomenda" onclick='cadastrarClienteNovo("2")'>Continuar (Encomenda)</a>
+                                    </div>
+                                    <div class="input-field col s2 left-align">
+                                        <a class="btn orange" onclick='cadastrarClienteNovo("3")'>Salvar Cliente</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row hide" id="divNovaVendaClienteCadastrado" style="padding-bottom: 15px">
+                                <div class="row" id="DivLinhasProdutoVenda">
+                                </div>
+                                <div class="row">
+                                    <div class="col s3 left center-align">
+                                        <a class="btn orange" onclick="voltarTipoClienteAdicionarProduto()">Voltar</a>
+                                    </div>
+                                    <div class="col s6 center-align">
+                                        <a class="btn orange" onclick="adicionarProdutoBtn()">Adicionar Produto</a>
+                                    </div>
+                                    <div class="col s2 center-align">
+                                        <a class="btn green hide" id="btnContinuarItens" style="margin-left: 15px" onclick="novoPedidoRevisao()">Continuar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row hide" id="divNovaVendaClienteRevisao" style="padding-bottom: 15px">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="DivrevisaoProdutoVenda">
+                                    </div>
+                                    <div class="row" id="DivrevisaoClienteVenda">
+                                        <div class="col s12">
+                                            <div class="row" style="margin-bottom: 0px">
+                                                <div class="input-field col s4">
+                                                    <i class="material-icons prefix">account_circle</i>
+                                                    <input type="text" id="autocomplete-clientes" class="autocomplete" numeroCliente="0">
+                                                    <label for="autocomplete-clientes">Nome do Cliente</label>
+                                                </div>
+                                                <div class="input-field col s3">
+                                                    <i class="material-icons prefix">date_range</i>
+                                                    <input type="text" id="datepickerEntrega" class="datepicker">
+                                                    <label for="datepickerEntrega">Data da Entrega</label>
+                                                </div>
+                                                <div class="input-field col s3">
+                                                    <select id="formaDePagamento">
+                                                        <option value="" disabled selected>Forma de Pagamento</option>
+                                                        <option value="Dinheiro">Dinheiro</option>
+                                                        <option value="Cartão">Cartão</option>
+                                                        <option value="Boleto">Boleto</option>
+                                                    </select>
+                                                    <label>Forma de Pagamento</label>
+                                                </div>
+                                                <div class="input-field col s1">
+                                                    <p style="margin-top: 10px;">
+                                                    <label>
+                                                        <input id="checkBoxPago" type="checkbox" class="filled-in" />
+                                                        <span>Pago</span>
+                                                    </label>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-bottom: 0px">
+                                                <div class="input-field col s10 offset-s1">
+                                                    <input type="text" id="observacoesPedido">
+                                                    <label for="observacoesPedido">Observações Pedido:</label>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-bottom: 0px">
+                                                <div class="col s2 offset-s1" >
+                                                    <a class="btn red" style="display: block;" onclick="cancelarPedidoNovo()" style="margin-top: 20px;">Cancelar</a>
+                                                </div>
+                                                <div class="col s3" >
+                                                    <a class="btn orange" style="display: block;" onclick="voltarCadastrarCliente()" style="margin-top: 20px;">Novo Cliente</a>
+                                                </div>
+                                                <div class="col s3" >
+                                                    <a class="btn orange" style="display: block;" onclick="editarPedidoNovo()" style="margin-top: 20px;">Editar</a>
+                                                </div>
+                                                <div class="col s2" >
+                                                    <a class="btn green" style="display: block;" onclick="confirmaPedidoNovo(this)" style="margin-top: 20px;">Confirmar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                                <div id="divtabsPedidos" class="card-tabs">
+                                    <ul id="tabsPedidos" class="tabs">
+                                        <li class="tab"><a href="#divPedidosJaFeitos">Pedidos (Pronta Entrega)</a></li>
+                                        <li class="tab"><a href="#divPedidosEncomenda">Pedidos (Encomenda)</a></li>                                        
+                                    </ul>
+                                </div>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+                        <div class="card-content center-align">
+                            <div class="row">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="divPedidosJaFeitos" style="padding-bottom: 15px">
+                            
+                                    </div>
+                                    <div class="row" style="margin-bottom: 0px;" id="divPedidosEncomenda" style="padding-bottom: 15px">
+                                        <div class="row hide" style="margin-bottom: 0px;" id="DivconfirmaEncomenda">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="EntregasTab" class="col s12">
+        <div class="row">
+            <div class="col s10 offset-s1">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                                <div class="col s6 offset-s3">
+                                        <h5>Entregas Para Hoje</h5>
+                                </div>
+                                <div class="col s3">
+                                        <a class="btn orange" style="margin-top: 9px;" onclick="iniciaPagPrintEntregas()"><span style="margin-top: 6px;" class="material-icons">print</span></a>
+                                </div>
+                            
+                            
+                            
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+
+                        <div class="card-content center-align">
+                            <div class="row">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="divEntregasHoje" style="padding-bottom: 15px">
+                            
+                                    </div>
+                                    <div class="row hide" id="divEntregasHojePrint" style="padding-bottom: 15px">
+                                        <div class="col s12 " style="border-style: solid;border-color: darkgrey;">
+                                            <div class="divider" style="margin-top: 10px"></div>
+                                            <div class="row" style="margin-top: 10px;margin-bottom: 10px;">
+                                                <div class="col s4">
+                                                    <p style="text-align: left;">Nome: CAMILA</p>
+                                                </div>
+                                                <div class="col s6">
+                                                    <p style="text-align: left;">Endereço: Bartholomeu de Carlos </p>
+                                                </div>
+                                                <div class="col s2">
+                                                    <p style="text-align: left;">Numero: 901</p>
+                                                </div>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="row" style="margin-top: 10px;margin-bottom: 10px;">
+                                                <div class="col s9">
+                                                    <p style="text-align: left;">Complemento: Sub condominio Reserva - Torre Flora -</p>
+                                                </div>
+                                                <div class="col s3">
+                                                    <p style="text-align: left;">Cidade: Guarulhos</p>
+                                                </div>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div style="margin-left: 0px;margin-right: 0px;" class="row">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="center-align">Pedido</th>
+                                                            <th class="center-align">Produto</th>
+                                                            <th class="center-align">Quantidade</th>
+                                                            <th class="center-align">Preço</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="center-align" style="padding: 0px">8</td>
+                                                            <td class="center-align" style="padding: 0px">Sofioli Brocolis</td>
+                                                            <td class="center-align" style="padding: 0px">1</td>
+                                                            <td class="center-align" style="padding: 0px">30</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center-align"></td>
+                                                            <td class="right-align"><b>Total:</b></td>
+                                                            <td class="center-align"><b>1</b></td>
+                                                            <td class="center-align"><b>30</b></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <h5>Futuras Entregas</h5>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+
+                        <div class="card-content center-align">
+                            <div class="row">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="divFuturasEntregas" style="padding-bottom: 15px">
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <h5>Entregas Realizadas</h5>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+
+                        <div class="card-content center-align">
+                            <div class="row">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="divEntregasRealizadas" style="padding-bottom: 15px">
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>        
+    </div>
+
+
+
+    <div id="ClientesTab" class="col s12">
+        <div class="row">
+            <div class="col s10 offset-s1">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <h5>Clientes Cadastrados</h5>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+
+                        <div class="card-content center-align">
+                            <div class="row">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="divClientesCadastrados" style="padding-bottom: 15px">
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="ComprasTab" class="col s12">
+        <div class="row">
+            <div class="col s10 offset-s1">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <h5>Itens necessitados por Encomendas</h5>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+
+                        <div class="card-content center-align">
+                            <div class="row">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="divCriaPedidoCompra" style="padding-bottom: 15px">
+                            
+                                    </div>
+                                    <div class="row" style="margin-bottom: 0px;" id="divPedidosEncomenda" style="padding-bottom: 15px">
+                                        <div class="row hide" style="margin-bottom: 0px;" id="DivConfirmaPedidoCompra">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <h5>Itens Encomendados</h5>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+
+                        <div class="card-content center-align">
+                            <div class="row">
+                                <div class="col m10 offset-m1">
+                                    <div class="row" id="divPedidoEncomendado" style="padding-bottom: 15px">
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="FinanceiroTab" class="col s12">Financeiro</div>
+    <div id="AdministracaoTab" class="col s12">
+        
+
+        <div class="">
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                                <h5>Produtos</h5>
+                                <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="input-field col s12 center-align">
+                                    <a class="orange waves-effect waves-light btn modal-trigger" href="#adicionarProdutos">Adicionar Novos Produtos</a>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+                        
+                        <div id="divtabsProdutos" class="card-tabs">
+                            
+                        </div>
+
+
+                        <div id="divProdutos" class="card-content">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12">
+                    <div id="tabelasAdministracao">
+                        
+                    </div>
+                </div>
+                <div class="col s12 m3">
+                    <div class="card">
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <h5>Recalcular Pedido</h5>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+                        <div class="card-content center-align" style="padding-top: 1px;padding-bottom: 0px;">
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="input-field col s12 center-align">
+                                    <input id="numeroPedidoRecalcula" type="text"></input>
+                                    <label for="numeroPedidoRecalcula">Numero Pedido</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 0px;">
+                                <div class="input-field col s12 center-align">
+                                    <a class="orange waves-effect waves-light btn" onclick='recalculaPedidoTela()'>Recalcular</a>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-bottom:0px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+                    
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+ <!-- Add Firebase products that you want to use -->
+ <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+
+ <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+ 
+    
+
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/administracao.js"></script>
+
+
+
+  </body>
+
+  <script>
+$(document).ready(function(){
+    $('#tabsPrincipal').tabs();
+    $('.modal').modal();
+});
+</script>
+</html>
+
+            
